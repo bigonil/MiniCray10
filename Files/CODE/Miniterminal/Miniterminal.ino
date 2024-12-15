@@ -1,5 +1,3 @@
-#include <ArduinoOTA.h>
-
 /*
   MINI CRAY TERMINAL EMULATION by Davide Gatti www.survivalhacking.it
   it simulate on screen text when using a CRAY.
