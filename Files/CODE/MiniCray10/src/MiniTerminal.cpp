@@ -17,6 +17,12 @@ String linea6 = "                   ";
 // Initialize the OLED display (I2C address, SDA, SCL)
 SSD1306Wire display(0x3c, SDA, SCL);
 
+// Function Prototypes
+void Blink(int nblink);
+void BlinkD(int nblink);
+void AddText(const char *text);
+void SlowText(const char *text, int y);
+
 void setup() {
     Serial.begin(115200);
     Serial.println("Start");
