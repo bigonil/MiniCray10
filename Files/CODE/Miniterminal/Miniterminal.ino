@@ -1,3 +1,5 @@
+#include <ArduinoOTA.h>
+
 /*
   MINI CRAY TERMINAL EMULATION by Davide Gatti www.survivalhacking.it
   it simulate on screen text when using a CRAY.
@@ -8,7 +10,7 @@
   https://thingpulse.com
 */
 
-#include <Wire.h>               // Only needed for Arduino 1.6.5 and earlier
+#include <Wire.h>           // Only needed for Arduino 1.6.5 and earlier
 #include "SSD1306Wire.h"        // legacy: #include "SSD1306.h"
 
 
