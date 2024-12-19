@@ -11,6 +11,12 @@
 #include <Wire.h>           // Only needed for Arduino 1.6.5 and earlier
 #include "SSD1306Wire.h"        // legacy: #include "SSD1306.h"
 
+// Assign GPIO pins for I2C communication
+const int scl_pin = 10;  // GPIO pin to be used as SCL
+const int sda_pin = 9;   // GPIO pin to be used as SDA
+
+// Declare the display object globally
+SSD1306Wire display(0x3c, sda_pin, scl_pin);   // ADDRESS, SDA, SCL
 
 // Optionally include custom images
 # define SCROLLSPEED 10 // speed of scroling text
@@ -25,14 +31,17 @@ String linea4 = "                   ";
 String linea5 = "                   ";
 String linea6 = "                   ";
 
-// Initialize the OLED display using Arduino Wire:
- SSD1306Wire display(0x3c, SDA, SCL);   // ADDRESS, SDA, SCL  -  SDA and SCL usually populate automatically based on your board's pins_arduino.h e.g. https://github.com/esp8266/Arduino/blob/master/variants/nodemcu/pins_arduino.h
 
 void setup() {
   Serial.begin(115200);
   Serial.println("Start");
 
-  // Initialising the UI will init the display too.
+  // Start the I2C bus as master
+  Wire.setPins(sda_pin, scl_pin); // Set the I2C pins before begin
+  Wire.begin(sda_pin, scl_pin); // Initialize the I2C as master on GPIO 10 (SCL) and GPIO 9 (SDA)
+  Serial.println("I2C bus initialized as master with SDA on GPIO 09 and SCL on GPIO 10.");
+
+   // Initialising the UI will init the display too.
   display.init();
   display.flipScreenVertically();
   display.setFont(ArialMT_Plain_10);
